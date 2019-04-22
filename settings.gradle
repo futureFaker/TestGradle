@@ -1,0 +1,67 @@
+gradle.settingsEvaluated{
+    println "settings：执行settingsEvaluated..."
+}
+
+gradle.projectsLoaded{
+    println "settings：执行projectsLoaded..."
+}
+
+
+gradle.beforeProject { proj ->
+    println "settings：执行${proj.name} beforeProject"
+}
+
+gradle.afterProject { proj ->
+    println "settings：执行${proj.name} afterProject"
+}
+
+gradle.projectsEvaluated {
+    println "settings: 执行projectsEvaluated..."
+}
+
+gradle.buildStarted {
+    println "构建开始..."
+}
+
+gradle.buildFinished {
+    println "构建结束..."
+}
+
+gradle.addBuildListener(new BuildListener() {
+
+    @Override
+    void buildStarted(Gradle gradle) {
+        println('---addBuildListener---buildStarted--')
+
+    }
+
+    @Override
+    void settingsEvaluated(Settings settings) {
+        println('---addBuildListener---settingsEvaluated--')
+
+    }
+
+    @Override
+    void projectsLoaded(Gradle gradle) {
+        println('---addBuildListener---projectsLoaded--')
+
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+        println('---addBuildListener---projectsEvaluated--')
+
+    }
+
+    @Override
+    void buildFinished(BuildResult result) {
+        println('---addBuildListener---buildFinished--')
+
+    }
+})
+
+include ':app'
+
+if(hasProperty("isLoadPlugin1") ? isLoadPlugin1.toBoolean() : false){
+    include ':plugin1'
+}
