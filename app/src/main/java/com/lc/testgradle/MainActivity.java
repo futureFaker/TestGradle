@@ -12,5 +12,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         System.out.println("-----测试分支提交---");
+        System.out.println("-----测试master提交---");
     }
 }
